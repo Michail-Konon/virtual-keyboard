@@ -1,32 +1,48 @@
-window.addEventListener("load", () => {
-  const page = document.querySelector('body');
+import {lettersArray} from './letters.js';
 
-  function letsStart() {
-    let wrap = document.createElement('div');
-    wrap.className = 'wrapper';
+if (localStorage.getItem('appLang') === null) {
+  localStorage.setItem('appLang', 'eng');
+}
 
-    let keyboard = document.createElement('div');
-    keyboard.className = 'keyboard';
+
+const page = document.querySelector('body');
+
+function letsStart() {
+  let wrap = document.createElement('div');
+  wrap.className = 'wrapper';
+
+  let keyboard = document.createElement('div');
+  keyboard.className = 'keyboard';
   
-    let screen = document.createElement('div');
-    screen.className = 'screen';
-    screen.innerHTML = '<textarea class="screen-text" id="screen" rows="5" autofocus></textarea>';
+  let screen = document.createElement('div');
+  screen.className = 'screen';
 
-    let rowFirst = document.createElement('div');
-    let rowSecond = document.createElement('div');
-    let rowThird = document.createElement('div');
-    let rowFourth = document.createElement('div');
-    let rowFifth = document.createElement('div');
+  let textField = document.createElement('textarea');
+  textField.className = "screen-text";
+  textField.setAttribute('autofocus', 'autofocus');
+  textField.focus();
 
-    let keysWrapper = document.createElement('div');
-    keysWrapper.className = 'keys-wrapper';
+  let keysWrapper = document.createElement('div');
+  keysWrapper.className = 'keys-wrapper';
 
-    keyboard.appendChild(keysWrapper);
-    wrap.append(screen);
-    wrap.appendChild(keyboard);
-    page.appendChild(wrap);
-    page.className = 'body';
+  screen.appendChild(textField);
+  keyboard.appendChild(keysWrapper);
+  wrap.append(screen);
+  wrap.appendChild(keyboard);
+  page.appendChild(wrap);
+  page.className = 'body';
+}
+  
+letsStart();
+
+class CustomButtonCommon extends HTMLButtonElement {
+  constructor() {
+    super();
   }
-  
-  letsStart();
-});
+}
+
+class CustomButtonSpecial extends HTMLButtonElement {
+  constructor() {
+    super();
+  }
+}
