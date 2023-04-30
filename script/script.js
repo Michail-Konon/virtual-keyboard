@@ -18,7 +18,7 @@ keyboard.className = 'keyboard';
 let screen = document.createElement('div');
 screen.className = 'screen';
 
-let textField = document.createElement('textarea');
+export let textField = document.createElement('textarea');
 textField.className = "screen-text";
 textField.setAttribute('autofocus', 'autofocus');
 textField.focus();
@@ -83,6 +83,11 @@ class CustomButtonSpecial extends HTMLButtonElement {
     this.keyCode = specialLettersArray[btnIndex][0];
     this.innerHTML = specialLettersArray[btnIndex][2];
     this.style.width = specialLettersArray[btnIndex][5];
+    this.addEventListener('mousedown', specialLettersArray[btnIndex][3]);
+    this.addEventListener('mouseup', specialLettersArray[btnIndex][4]);
+    this.addEventListener('mouseup', () => {
+      textField.focus();
+    });
   }
 }
 
