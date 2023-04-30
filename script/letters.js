@@ -13,8 +13,8 @@ export let lettersArray = [
   ['Minus',11,['-','_'],['-','_']],
   ['Equal',12,['=','+'],['=','+']],
 
-  ['Back',13,'Back','Back'],
-  ['Tab',14,'Tab','Tab'],
+  //['Back',13,'Back','Back'],
+  //['Tab',14,'Tab','Tab'],
 
   ['KeyQ',15,'q','й'],
   ['KeyW',16,'w','ц'],
@@ -30,8 +30,8 @@ export let lettersArray = [
   ['BracketRight',26,[']','}'],'ъ'],
   ['Backslash',27,['\\','|'],['\\','/']],
 
-  ['Del',28,'Del','Del'],
-  ['Caps',29,'Caps','Caps'],
+  //['Del',28,'Del','Del'],
+  //['Caps',29,'Caps','Caps'],
 
   ['KeyA',30, 'a','ф'],
   ['KeyS',31,'s','ы'],
@@ -45,8 +45,8 @@ export let lettersArray = [
   ['Semicolon',39,[';',':'],'ж'],
   ['Quote',40,["'",'"'],'э'],
 
-  ['Enter',41,'Enter','Enter'],
-  ['Shift',42,'Shift','Shift'],
+  //['Enter',41,'Enter','Enter'],
+  //['Shift',42,'Shift','Shift'],
 
   ['IntlBackslash',43,['\\','|'],['\\','/']],
   ['KeyZ',44,'z','я'],

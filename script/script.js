@@ -57,7 +57,6 @@ class CustomButtonCommon extends HTMLButtonElement {
 
 customElements.define('common-letters', CustomButtonCommon, { extends: 'button' });
 
-
 for (btnIndex = 0; btnIndex < lettersArray.length; btnIndex++) {
   let j = lettersArray[btnIndex][1];
   buttonArray[j] = document.createElement('button', { is: 'common-letters' });
@@ -65,7 +64,7 @@ for (btnIndex = 0; btnIndex < lettersArray.length; btnIndex++) {
 }
 
 buttonArray.forEach((el, i) => {
-  keyboard.append(buttonArray[i])
+  keysWrapper.append(buttonArray[i])
 })
 
 class CustomButtonSpecial extends HTMLButtonElement {
@@ -75,8 +74,17 @@ class CustomButtonSpecial extends HTMLButtonElement {
     this.classList.add('custom-btn_special');
     this.keyCode = specialLettersArray[btnIndex][0];
     this.innerHTML = specialLettersArray[btnIndex][2];
-    if (specialLettersArray[btnIndex][5] == true) {
-      this.style.width = specialLettersArray[btnIndex][5];
-    }
+    this.style.width = specialLettersArray[btnIndex][5];
   }
 }
+
+customElements.define('special-letters', CustomButtonSpecial, { extends: 'button' });
+
+for (btnIndex = 0; btnIndex < specialLettersArray.length; btnIndex++) {
+  let j = specialLettersArray[btnIndex][1];
+  buttonArray[j] = document.createElement('button', { is: 'special-letters' });
+}
+
+buttonArray.forEach((el, i) => {
+  keysWrapper.append(buttonArray[i])
+})
