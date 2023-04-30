@@ -30,15 +30,15 @@ html {
 
 .keyboard {
   background-color: white;
-  width: 700px;
-  /* height: 70%; */
+  width: 685px;
+  height: 210px;
   border: 2px solid gray;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .screen {
-  width: 700px;
+  width: 685px;
 }
 
 .screen-text {
@@ -55,6 +55,7 @@ html {
   flex-direction: row;
   flex-wrap: wrap;
   background: gray;
+  height: 100%;
 }
 
 .custom-btn {

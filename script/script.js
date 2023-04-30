@@ -52,6 +52,14 @@ class CustomButtonCommon extends HTMLButtonElement {
     } else {
       this.innerHTML = this.langValue[0];
     }
+    this.addEventListener('mousedown', () => {
+      this.textField = this.langValue[0];
+      textField.setRangeText(this.textField, textField.selectionStart, textField.selectionEnd, 'end');
+      textField.focus();
+    });
+    this.addEventListener('mouseup', () => {
+      textField.focus();
+    });
   }
 }
 
