@@ -1,4 +1,5 @@
 import {lettersArray} from './letters.js';
+import {specialLettersArray} from './special-letters.js';
 
 if (localStorage.getItem('appLang') === null) {
   localStorage.setItem('appLang', 'eng');
@@ -70,5 +71,12 @@ buttonArray.forEach((el, i) => {
 class CustomButtonSpecial extends HTMLButtonElement {
   constructor() {
     super();
+    this.setAttribute('type', 'button');
+    this.classList.add('custom-btn_special');
+    this.keyCode = specialLettersArray[btnIndex][0];
+    this.innerHTML = specialLettersArray[btnIndex][2];
+    if (specialLettersArray[btnIndex][5] == true) {
+      this.style.width = specialLettersArray[btnIndex][5];
+    }
   }
 }
