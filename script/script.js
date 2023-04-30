@@ -1,6 +1,6 @@
 import {lettersArray} from './letters.js';
 import {specialLettersArray} from './special-letters.js';
-import {isShift} from './special-letters.js';
+import {isShift, isAlt, isCtrl} from './special-letters.js';
 
 if (localStorage.getItem('appLang') === null) {
   localStorage.setItem('appLang', 'eng');
@@ -8,6 +8,18 @@ if (localStorage.getItem('appLang') === null) {
 
 
 const page = document.querySelector('body');
+const head = document.querySelector('head');
+
+let cssLink = document.createElement('link');
+cssLink.setAttribute('rel', 'stylesheet');
+cssLink.setAttribute('href', './styles/style.css');
+
+let cssFav = document.createElement('link');
+cssFav.setAttribute('rel', 'shortcut icon');
+cssFav.setAttribute('href', './favicon.ico');
+
+head.appendChild(cssLink);
+head.appendChild(cssFav);
 
 
 let wrap = document.createElement('div');

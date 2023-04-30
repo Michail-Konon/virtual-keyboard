@@ -16,7 +16,9 @@ export const specialLettersArray = [
   ['ControlRight', 61, 'CTRL', ctrlFunction, unCtrlFunction, '40px'],
 ];
 
-export let isShift = false;
+export let isShift = false, 
+          isCtrl = false,
+          isAlt = false;
 
 function emptyFunction() {
   return null
@@ -61,17 +63,21 @@ function unShiftFunction() {
 }
 
 function ctrlFunction() {
-
+  isCtrl = true;
+  console.log('Ctrl active');
 }
 
 function unCtrlFunction() {
-
+  isCtrl = false;
+  console.log('Ctrl unactive');
 }
 
 function altFunction() {
-
+  isAlt = true;
+  console.log('alt active');
 }
 
 function unAltFunction() {
-  
+  isAlt = false;
+  console.log('alt unactive');
 }
