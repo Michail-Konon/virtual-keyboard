@@ -1,5 +1,6 @@
 import {lettersArray} from './letters.js';
 import {specialLettersArray} from './special-letters.js';
+import {isShift} from './special-letters.js';
 
 if (localStorage.getItem('appLang') === null) {
   localStorage.setItem('appLang', 'eng');
@@ -37,6 +38,10 @@ let lang = localStorage.getItem('appLang');
 let buttonArray = [];
 let btnIndex;
 let symbolButtonArray = [];
+
+textField.addEventListener('keypress', (event) => {
+  event.preventDefault();
+});
 
 class CustomButtonCommon extends HTMLButtonElement {
   constructor() {
@@ -101,3 +106,31 @@ for (btnIndex = 0; btnIndex < specialLettersArray.length; btnIndex++) {
 buttonArray.forEach((el, i) => {
   keysWrapper.append(buttonArray[i])
 })
+
+document.addEventListener('keydown', (event) => {
+  buttonArray.forEach((el, i) => {
+    if (event.code === buttonArray[i].keyCode) {
+      textField.focus();
+      buttonArray[i].classList.add('btn-active');
+      if ((event.code !== 'ArrowRight') 
+          && (event.code !== 'ArrowLeft') 
+          && (event.code !== 'ArrowDown') 
+          && (event.code !== 'ArrowUp') 
+          && (event.code !== 'ArrowUp') 
+          && (event.code !== 'ArrowUp') 
+          && (event.code !== 'Backspace') 
+          && (event.code !== 'Delete')) {
+        let myEvent = new Event('mousedown', { bubbles: true });
+        buttonArray[i].dispatchEvent(myEvent);
+      }
+    }
+  })
+});
+
+document.addEventListener('keyup', (event) => {
+  buttonArray.forEach((el, i) => {
+    if (event.code === buttonArray[i].keyCode) {
+      buttonArray[i].classList.remove('btn-active');
+    }
+  })
+});

@@ -105,3 +105,10 @@ html {
   color: white;
   transform: scale(0.9);
 }
+
+.btn-active {
+  transition: 0.1s;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  transform: scale(0.9);
+}
