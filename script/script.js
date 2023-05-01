@@ -22,10 +22,6 @@ const specialLettersArray = [
     ["Space", 59, "&#160", spaceFunction, emptyFunction, "320px"],
     ["AltRight", 60, "ALT", altFunction, unAltFunction, "40px"],
     ["ControlRight", 61, "CTRL", ctrlFunction, unCtrlFunction, "40px"],
-    //['ArrowUp', 54, '↑', emptyFunction, emptyFunction, '40px'],
-    //['ArrowLeft', 62, '←', emptyFunction, emptyFunction, '40px'],
-    //['ArrowDown', 63, '↓', emptyFunction, emptyFunction, '40px'],
-    //['ArrowRight', 64, '→', emptyFunction, emptyFunction, '40px']
 ];
 
 let isShift = false, 

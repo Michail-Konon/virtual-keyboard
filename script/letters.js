@@ -13,9 +13,6 @@ export let lettersArray = [
     ["Minus",11,["-","_"],["-","_"]],
     ["Equal",12,["=","+"],["=","+"]],
 
-    //['Back',13,'Back','Back'],
-    //['Tab',14,'Tab','Tab'],
-
     ["KeyQ",15,"q","й"],
     ["KeyW",16,"w","ц"],
     ["KeyE",17,"e","у"],
@@ -44,9 +41,6 @@ export let lettersArray = [
     ["KeyL",38,"l","д"],
     ["Semicolon",39,[";",":"],"ж"],
     ["Quote",40,["'","\""],"э"],
-
-    //['Enter',41,'Enter','Enter'],
-    //['Shift',42,'Shift','Shift'],
 
     ["IntlBackslash",43,["\\","|"],["\\","/"]],
     ["KeyZ",44,"z","я"],
