@@ -1,11 +1,96 @@
 import {lettersArray} from './letters.js';
-import {specialLettersArray} from './special-letters.js';
-import {isShift, isAlt, isCtrl} from './special-letters.js';
 
 if (localStorage.getItem('appLang') === null) {
   localStorage.setItem('appLang', 'eng');
 }
 
+const specialLettersArray = [
+  ['Backspace', 13, 'BACKSPACE', backspaceFunction, emptyFunction, '160px'],
+  ['Tab', 14, 'TAB', tabFunction, emptyFunction, '80px'],
+  ['Delete', 28, 'DEL', deleteFunction, emptyFunction, '80px'],
+  ['CapsLock', 29, 'CAPS LOCK', capsFunction, emptyFunction, '120px'],
+  ['Enter', 41, 'ENTER', enterFunction, emptyFunction, '120px'],
+  ['ShiftLeft', 42, 'SHIFT', shiftFunction, unShiftFunction, '120px'],
+  ['ShiftRight', 55, 'SHIFT', shiftFunction, unShiftFunction, '80px'],
+  ['ControlLeft', 56, 'CTRL', ctrlFunction, unCtrlFunction, '80px'],
+  ['OSLeft', 57, 'WIN', emptyFunction, emptyFunction, '40px'],
+  ['AltLeft', 58, 'ALT', altFunction, unAltFunction, '40px'],
+  ['Space', 59, '&#160', spaceFunction, emptyFunction, '320px'],
+  ['AltRight', 60, 'ALT', altFunction, unAltFunction, '40px'],
+  ['ControlRight', 61, 'CTRL', ctrlFunction, unCtrlFunction, '40px'],
+  //['ArrowUp', 54, '↑', emptyFunction, emptyFunction, '40px'],
+  //['ArrowLeft', 62, '←', emptyFunction, emptyFunction, '40px'],
+  //['ArrowDown', 63, '↓', emptyFunction, emptyFunction, '40px'],
+  //['ArrowRight', 64, '→', emptyFunction, emptyFunction, '40px']
+];
+
+let isShift = false, 
+    isCtrl = false,
+    isAlt = false;
+
+function emptyFunction() {
+  return null
+}
+
+function spaceFunction() {
+  textField.setRangeText(' ', textField.selectionStart, textField.selectionEnd, 'end');
+}
+
+function backspaceFunction() {
+  if (textField.selectionStart > 0) {
+    textField.setRangeText('', textField.selectionStart - 1, textField.selectionEnd, 'end');
+  }
+}
+
+function tabFunction() {
+  textField.setRangeText('\t', textField.selectionStart, textField.selectionEnd, 'end');
+}
+
+function deleteFunction() {
+  if (textField.selectionStart > 0) {
+    textField.setRangeText('', textField.selectionStart, textField.selectionEnd + 1, 'end');
+  }
+}
+
+function capsFunction() {
+
+}
+
+function enterFunction() {
+  textField.setRangeText('\n', textField.selectionStart, textField.selectionEnd, 'end');
+}
+
+function shiftFunction() {
+  isShift = true;
+  console.log(isShift);
+}
+
+function unShiftFunction() {
+  isShift = false;
+  console.log(isShift);
+}
+
+function ctrlFunction() {
+  isCtrl = true;
+  console.log(isCtrl);
+}
+
+function unCtrlFunction() {
+  isCtrl = false;
+  console.log(isCtrl);
+}
+
+function altFunction() {
+  isAlt = true;
+  console.log(isAlt);
+}
+
+function unAltFunction() {
+  isAlt = false;
+  console.log(isAlt);
+}
+
+let lang = localStorage.getItem('appLang');
 
 const page = document.querySelector('body');
 const head = document.querySelector('head');
@@ -46,7 +131,6 @@ wrap.appendChild(keyboard);
 page.appendChild(wrap);
 page.className = 'body';
 
-let lang = localStorage.getItem('appLang');
 let buttonArray = [];
 let btnIndex;
 let symbolButtonArray = [];
@@ -143,6 +227,12 @@ document.addEventListener('keyup', (event) => {
   buttonArray.forEach((el, i) => {
     if (event.code === buttonArray[i].keyCode) {
       buttonArray[i].classList.remove('btn-active');
+    } if ((event.code !== 'ArrowRight') 
+      && (event.code !== 'ArrowLeft') 
+      && (event.code !== 'Backspace') 
+      && (event.code !== 'Delete')) {
+      let myEvent = new Event('mouseup', { bubbles: true });
+      buttonArray[i].dispatchEvent(myEvent);
     }
   })
 });
