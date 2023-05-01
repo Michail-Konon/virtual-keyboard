@@ -1,3 +1,5 @@
+'use strict';
+
 import {lettersArray} from './letters.js';
 
 if (localStorage.getItem('appLang') === null) {
@@ -54,9 +56,16 @@ function deleteFunction() {
     textField.setRangeText('', textField.selectionStart, textField.selectionEnd + 1, 'end');
   }
 }
+let counter = 0;
 
 function capsFunction() {
-
+  counter++;
+  if (counter % 2 === 1) {
+    isCaps = true;
+  } else {
+    isCaps = false;
+  }
+  buttonArray[29].classList.toggle('btn-active');
 }
 
 function enterFunction() {
@@ -129,13 +138,20 @@ head.appendChild(cssFav);
 let wrap = document.createElement('div');
 wrap.className = 'wrapper';
 
+let textContainer = document.createElement('div');
+textContainer.className = 'hint-wrapper'
+textContainer.innerHTML = `
+                          <p class='hint-text'>Клавиатура сделана в операционной системе Windows</p>
+                          <p class='hint-text'>Смена языка осуществляется комбинацией Alt + Ctrl</p>
+                          `
+
 let keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
   
 let screen = document.createElement('div');
 screen.className = 'screen';
 
-export let textField = document.createElement('textarea');
+let textField = document.createElement('textarea');
 textField.className = "screen-text";
 textField.setAttribute('autofocus', 'autofocus');
 textField.focus();
@@ -147,6 +163,7 @@ screen.appendChild(textField);
 keyboard.appendChild(keysWrapper);
 wrap.append(screen);
 wrap.appendChild(keyboard);
+wrap.appendChild(textContainer);
 page.appendChild(wrap);
 page.className = 'body';
 
@@ -154,7 +171,7 @@ let buttonArray = [];
 let btnIndex;
 let symbolButtonArray = [];
 
-textField.addEventListener('keypress', (event) => {
+document.addEventListener('keypress', (event) => {
   event.preventDefault();
 });
 
@@ -264,17 +281,19 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
-  buttonArray.forEach((el, i) => {
-    if (event.code === buttonArray[i].keyCode) {
-      buttonArray[i].classList.remove('btn-active');
-    } if ((event.code !== 'ArrowRight') 
-      && (event.code !== 'ArrowLeft') 
-      && (event.code !== 'Backspace') 
-      && (event.code !== 'Delete')) {
-      let myEvent = new Event('mouseup', { bubbles: true });
-      buttonArray[i].dispatchEvent(myEvent);
+  for (let index = 0; index < buttonArray.length; index++) {
+    if (event.code === buttonArray[index].keyCode) {
+      event.preventDefault();
+      buttonArray[index].classList.remove('btn-active');
+      if ((event.code !== 'ArrowRight') 
+            && (event.code !== 'ArrowLeft') 
+            && (event.code !== 'Backspace') 
+            && (event.code !== 'Delete')) {
+        let myEvent = new Event('mouseup', { bubbles: true });
+        buttonArray[index].dispatchEvent(myEvent);
+      }
     }
-  })
+  }
 });
 
 function changeLang() {
@@ -291,3 +310,10 @@ function changeLang() {
     }
   });
 }
+
+document.addEventListener("keydown", (event) => {
+    if(event.key === 'CapsLock') {
+      buttonArray[29].classList.toggle('btn-active_caps');
+    }
+  }
+);
