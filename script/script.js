@@ -4,6 +4,8 @@ if (localStorage.getItem('appLang') === null) {
   localStorage.setItem('appLang', 'eng');
 }
 
+let lang = localStorage.getItem('appLang');
+
 const specialLettersArray = [
   ['Backspace', 13, 'BACKSPACE', backspaceFunction, emptyFunction, '160px'],
   ['Tab', 14, 'TAB', tabFunction, emptyFunction, '80px'],
@@ -26,6 +28,7 @@ const specialLettersArray = [
 
 let isShift = false, 
     isCtrl = false,
+    isCaps = false,
     isAlt = false;
 
 function emptyFunction() {
@@ -72,25 +75,41 @@ function unShiftFunction() {
 
 function ctrlFunction() {
   isCtrl = true;
+  langCheck()
   console.log(isCtrl);
 }
 
 function unCtrlFunction() {
   isCtrl = false;
+  langCheck()
   console.log(isCtrl);
 }
 
 function altFunction() {
   isAlt = true;
+  langCheck()
   console.log(isAlt);
 }
 
 function unAltFunction() {
+  langCheck()
   isAlt = false;
   console.log(isAlt);
 }
 
-let lang = localStorage.getItem('appLang');
+function langCheck() {
+  if ((isCtrl === true) && (isAlt === true)) {
+    if (localStorage.getItem('appLang') === 'eng') {
+      localStorage.setItem('appLang', 'ru');
+      lang = 'ru';
+      changeLang();
+    } else {
+      localStorage.setItem('appLang', 'eng');
+      lang = 'eng';
+      changeLang();
+    }
+  }
+}
 
 const page = document.querySelector('body');
 const head = document.querySelector('head');
@@ -147,17 +166,38 @@ class CustomButtonCommon extends HTMLButtonElement {
     this.keyCode = lettersArray[btnIndex][0];
     this.EngLayout = lettersArray[btnIndex][2];
     this.RusLayout = lettersArray[btnIndex][3];
-    this.langValue = this.EngLayout;
+    if (lang === 'eng') {
+      this.langValue = this.EngLayout;
+    } else {
+      this.langValue = this.RusLayout;
+    }
     if (typeof this.langValue === 'string') {
       this.innerHTML = this.langValue.toUpperCase();
     } else {
       this.innerHTML = this.langValue[0];
     }
     this.addEventListener('mousedown', () => {
-      this.textField = this.langValue[0];
-      textField.setRangeText(this.textField, textField.selectionStart, textField.selectionEnd, 'end');
+      if (typeof this.langValue === 'string') {
+        if (isShift) {
+          if (!isCaps) {
+            this.inputValue = this.langValue.toUpperCase();
+          } else {
+            this.inputValue = this.langValue;
+          }
+        } else if (isCaps) {
+          this.inputValue = this.langValue.toUpperCase();
+        } else {
+          this.inputValue = this.langValue;
+        }
+      } else if (isShift) {
+        this.inputValue = this.langValue[1];
+      } else {
+        this.inputValue = this.langValue[0];
+      }
+      textField.setRangeText(this.inputValue, textField.selectionStart, textField.selectionEnd, 'end');
       textField.focus();
     });
+
     this.addEventListener('mouseup', () => {
       textField.focus();
     });
@@ -236,3 +276,18 @@ document.addEventListener('keyup', (event) => {
     }
   })
 });
+
+function changeLang() {
+  symbolButtonArray.forEach((el) => {
+    if (lang === 'eng') {
+      el.langValue = el.EngLayout;
+    } else {
+      el.langValue = el.RusLayout;
+    }
+    if (typeof el.langValue === 'string') {
+      el.innerHTML = el.langValue.toUpperCase();
+    } else {
+      el.innerHTML = el.langValue[0];
+    }
+  });
+}
