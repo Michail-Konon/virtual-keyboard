@@ -1,0 +1,126 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.body {
+  background-color: gray;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+* {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.wrapper {
+  background-color: black;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.keyboard {
+  background-color: white;
+  width: 685px;
+  height: 210px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.screen {
+  width: 685px;
+}
+
+.screen-text {
+  width: calc(100% - 20px);
+  max-width: 100%;
+  padding: 10px 10px;
+  height: 60px;
+}
+
+.screen-text:focus {
+  outline: none;
+}
+
+.keys-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: gray;
+  height: 100%;
+}
+
+.custom-btn {
+  width: 40px;
+  height: 40px;
+  transition: 0.1s;
+}
+
+.custom-btn:hover {
+  transition: 0.1s;
+  background-color: gray;
+  color: white;
+}
+
+.custom-btn:active {
+  transition: 0.1s;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  transform: scale(0.9);
+}
+
+.custom-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.custom-btn_special {
+  width: 40px;
+  height: 40px;
+  transition: 0.1s;
+  background-color: rgb(204, 204, 204);
+}
+
+.custom-btn_special:hover {
+  transition: 0.1s;
+  background-color: rgb(84, 84, 84);
+  color: white;
+}
+
+.custom-btn_special:active {
+  transition: 0.1s;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  transform: scale(0.9);
+}
+
+.btn-active_caps,
+.btn-active {
+  transition: 0.1s;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  transform: scale(0.9);
+}
+
+.hint-wrapper {
+  margin-top: 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+.hint-text {
+  color: white;
+  margin: 10px;
+}
